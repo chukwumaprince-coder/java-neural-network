@@ -6,9 +6,10 @@ public class outputNeuron {
     private double bias;
     //private double inputs;
 
+    // instantiating neurons to attain layer input values
     public static double[] receiveInput() {
-        hiddenNeuron hN1 = new hiddenNeuron(1, 0.5, 0.1, 2, 2);
-        hiddenNeuron hN2 = new hiddenNeuron(0.3, 0.5, 0.2, 1, 3);
+        hiddenNeuron hN1 = new hiddenNeuron(1, 0.5, 0.1);
+        hiddenNeuron hN2 = new hiddenNeuron(0.3, 0.5, 0.2);
         double activation1 = hN1.getActivation();
         double activation2 = hN2.getActivation();
         //System.out.println("1st activation: " + activation1 + "2nd activation: " + activation2);
