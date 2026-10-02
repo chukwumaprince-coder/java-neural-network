@@ -1,14 +1,14 @@
-//import java.util.Arrays;
-
 public class neuronTest {
     public static void main(String[] args) {
-        //outputNeuron.testInputReceived();
-        outputNeuron.testGetInput1();
-        outputNeuron.testGetInput2();
+        //bpComp.train(1.5, 10);
 
-        outputNeuron oN = new outputNeuron(1,0.1, 0.2);
-        oN.calcActivation();
+        // untrained model query
+        //bpComp.untrainedQuery();    // changes when trained, find a better point to pick weight
 
-        //System.out.println(Arrays.toString(inputNeuron.getInput()));
+        // training
+        bpComp.train(1.5, 10);
+
+        // trained model query
+        bpComp.query(1,1);
     }
 }

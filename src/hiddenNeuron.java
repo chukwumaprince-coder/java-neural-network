@@ -9,19 +9,23 @@ public class hiddenNeuron{
         this.bias = bias;
     }
 
-    // helper functions
-    public double calcWeightedSum() {
+    // main functions
+    private double calcWeightedSum() {
         return (weight1 * receiveInput1()) + (weight2 * receiveInput2()) + bias;
     }
-    public double calcActivation() {
+    private double calcActivation() {
         return 1.0 / (1.0 + Math.exp(-calcWeightedSum()));  //sigmoid activation
     }
+    public double getActivation() {
+        return calcActivation();
+    }
 
-    public static double receiveInput1() {
+    // helper functions
+    private static double receiveInput1() {
         double[] arr = inputNeuron.passInput();
         return arr[0];
     }
-    public static double receiveInput2() {
+    private static double receiveInput2() {
         double[] arr = inputNeuron.passInput();
         return arr[1];
     }
@@ -33,12 +37,7 @@ public class hiddenNeuron{
     public double getWeight2() {
         return weight2;
     }
-    public double getBias() {
-        return bias;
-    }
-    public double getActivation() {
-        return calcActivation();
-    }
+    public double getBias() {return bias;}
 
     // setters
     public void setWeight1(double newWeight1) {

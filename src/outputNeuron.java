@@ -1,18 +1,15 @@
-import java.util.Arrays;
-
 public class outputNeuron {
     private double weight5;
     private double weight6;
     private double bias;
-    //private double inputs;
+
+    static hiddenNeuron hN1 = new hiddenNeuron(1, 0.5, 0.1);
+    static hiddenNeuron hN2 = new hiddenNeuron(0.3, 0.5, 0.2);
 
     // instantiating neurons to attain layer input values
     public static double[] receiveInput() {
-        hiddenNeuron hN1 = new hiddenNeuron(1, 0.5, 0.1);
-        hiddenNeuron hN2 = new hiddenNeuron(0.3, 0.5, 0.2);
         double activation1 = hN1.getActivation();
         double activation2 = hN2.getActivation();
-        //System.out.println("1st activation: " + activation1 + "2nd activation: " + activation2);
 
         return new double[]{activation1, activation2};
     }
@@ -23,12 +20,17 @@ public class outputNeuron {
         this.bias = bias;
     }
 
-    public double calcWeightedSum() {
+    private double calcWeightedSum() {
         return (weight5 * getInput1()) + (weight6 * getInput2() + bias);
     }
     public double calcActivation() {
-        System.out.println(1.0 / (1.0 + Math.exp(-calcWeightedSum())));
-        return 1.0 /(1.0 + Math.exp(-calcWeightedSum()));
+        return 1.0 / (1.0 + Math.exp(-calcWeightedSum()));
+    }
+
+    // prediction at inference for query
+    public double infer(double input1, double input2) {
+        double wtdSum = ((weight5 * input1) + (weight6 * input2) + bias);
+        return 1.0 / (1.0 + Math.exp(-wtdSum));
     }
 
     // separating activation inputs for use
@@ -41,15 +43,30 @@ public class outputNeuron {
         return arr[1];
     }
 
-    // test getInput functions
-    public static void testInputReceived() {
-        System.out.println(Arrays.toString(receiveInput()));
+    // pass hN values to back propagation computation class
+    public static double[] getParams() {
+        double hiddenWeight1 = hN1.getWeight1();
+        double hiddenWeight2 = hN1.getWeight2();
+        double hiddenWeight3 = hN2.getWeight1();
+        double hiddenWeight4 = hN2.getWeight2();
+        double hiddenBias1 = hN1.getBias();
+        double hiddenBias2 = hN2.getBias();
+
+        return new double[]{hiddenWeight1, hiddenWeight2, hiddenWeight3, hiddenWeight4, hiddenBias1, hiddenBias2};
     }
-    public static void testGetInput1() {
-        System.out.println(getInput1());
-    }
-    public static void testGetInput2() {
-        System.out.println(getInput2());
+
+    // passing updated parameters from back propagation computation class to the hidden neurons
+    public static void passParams(double newHiddenWeight1, double newHiddenWeight2, double newHiddenWeight3,
+                                      double newHiddenWeight4, double newHiddenBias1, double newHiddenBias2,
+                                  int i, double epochs) {
+        if (i < epochs) {
+            hN1.setWeight1(newHiddenWeight1);
+            hN1.setWeight2(newHiddenWeight2);
+            hN1.setBias(newHiddenBias1);
+            hN2.setWeight1(newHiddenWeight3);
+            hN2.setWeight2(newHiddenWeight4);
+            hN2.setBias(newHiddenBias2);
+        }
     }
 
     // getters
