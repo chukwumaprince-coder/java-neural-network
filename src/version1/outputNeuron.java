@@ -1,3 +1,5 @@
+package version1;
+
 public class outputNeuron {
     private double weight5;
     private double weight6;

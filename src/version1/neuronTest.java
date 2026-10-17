@@ -1,3 +1,5 @@
+package version1;
+
 public class neuronTest {
     public static void main(String[] args) {
         //bpComp.train(1.5, 10);

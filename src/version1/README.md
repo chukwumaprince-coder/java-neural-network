@@ -3,7 +3,7 @@ A simple implementation of a NN from scratch in java without machine-learning li
 
 ## Current implementation
 Some things are not implemented as should, despite that this iteration has served its purpose.
-    NB: with the above stated, discression is adviced if used as edits to correct the code would be necessary.
+    NB: with the above stated, discretion is advised if used as edits to correct the code would be necessary.
         If simply looking to make use of the code without edits, it is advised to wait upon V2 completion.
 The next version would automatically create neuron objects, and hardcoded computation of neuron parameters will be replaced.
 It would boast only a dynamically tunable number of neurons for a single hidden layer.

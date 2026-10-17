@@ -1,3 +1,5 @@
+package version1;
+
 public class bpComp {
     static outputNeuron oN = new outputNeuron(1, 0.1, 0.2);
 

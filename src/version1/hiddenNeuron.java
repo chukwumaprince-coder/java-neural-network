@@ -1,3 +1,5 @@
+package version1;
+
 public class hiddenNeuron{
     private double weight1;
     private double weight2;
